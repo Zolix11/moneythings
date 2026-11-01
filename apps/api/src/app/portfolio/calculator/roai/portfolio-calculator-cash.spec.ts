@@ -194,6 +194,7 @@ describe('PortfolioCalculator', () => {
             id: accountId,
             name: 'USD',
             platformId: null,
+            tbszYear: null,
             updatedAt: parseDate('2023-12-31'),
             userId: userDummyData.id
           }
@@ -373,6 +374,7 @@ describe('PortfolioCalculator', () => {
             id: accountId,
             name: 'CHF',
             platformId: null,
+            tbszYear: null,
             updatedAt: parseDate('2023-12-31'),
             userId: userDummyData.id
           }
@@ -506,6 +508,7 @@ describe('PortfolioCalculator', () => {
             id: accountId,
             name: 'CHF',
             platformId: null,
+            tbszYear: null,
             updatedAt: parseDate('2023-12-31'),
             userId: userDummyData.id
           }

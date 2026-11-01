@@ -560,6 +560,17 @@ export function getStringOrUndefined(aString: string | null | undefined) {
   return undefined;
 }
 
+/**
+ * The two TBSZ deadlines: the lock-up periods end on the last day of the 3rd
+ * and 5th calendar year after the collection year (gyűjtőév).
+ */
+export function getTbszPeriodEnds(aCollectionYear: number) {
+  return {
+    fiveYear: `${aCollectionYear + 5}-12-31`,
+    threeYear: `${aCollectionYear + 3}-12-31`
+  };
+}
+
 export function getSum(aArray: Big[]) {
   if (aArray?.length > 0) {
     return aArray.reduce((a, b) => a.plus(b), new Big(0));

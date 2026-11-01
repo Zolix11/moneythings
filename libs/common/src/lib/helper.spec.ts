@@ -12,6 +12,7 @@ import {
   getNumberFormatGroup,
   getStringOrNull,
   getStringOrUndefined,
+  getTbszPeriodEnds,
   isAccountBalanceInFuture,
   isAccountExcluded,
   isCurrency,
@@ -866,6 +867,15 @@ describe('Helper', () => {
         language: 'de',
         locale: 'de-CH',
         viewMode: 'DEFAULT'
+      });
+    });
+  });
+
+  describe('getTbszPeriodEnds', () => {
+    it('Ends 3 and 5 calendar years after the collection year', () => {
+      expect(getTbszPeriodEnds(2026)).toEqual({
+        fiveYear: '2031-12-31',
+        threeYear: '2029-12-31'
       });
     });
   });

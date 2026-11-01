@@ -58,6 +58,12 @@
             [url]="element.platform?.url"
           />
           <span>{{ element.name }}</span>
+          @if (element.tbszYear) {
+            <small class="ms-2 text-muted" i18n
+              >TBSZ {{ element.tbszYear }} · tax-free after
+              {{ getTbszPeriodEnds(element.tbszYear).fiveYear }}</small
+            >
+          }
         </div>
       </td>
       <td *matFooterCellDef class="px-1" i18n mat-footer-cell>Total</td>

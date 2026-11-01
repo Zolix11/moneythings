@@ -5,10 +5,12 @@ import { Transform, TransformFnParams } from 'class-transformer';
 import {
   ArrayUnique,
   IsArray,
+  IsInt,
   IsNumber,
   IsOptional,
   IsString,
   MaxLength,
+  Min,
   ValidateIf
 } from 'class-validator';
 import { isString } from 'lodash-es';
@@ -48,4 +50,10 @@ export class UpdateAccountDto {
   @IsOptional()
   @IsString({ each: true })
   tags?: string[];
+
+  // TBSZ accounts exist since 2006
+  @IsInt()
+  @IsOptional()
+  @Min(2006)
+  tbszYear?: number | null;
 }

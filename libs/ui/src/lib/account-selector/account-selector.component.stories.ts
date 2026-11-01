@@ -27,6 +27,7 @@ const ACCOUNTS: AccountWithPlatform[] = [
       url: 'https://www.coinbase.com'
     },
     platformId: '9da3a8a7-4795-43e3-a6db-ccb914189737',
+    tbszYear: null,
     updatedAt: new Date('2024-01-01'),
     userId: '081aa387-487d-4438-83a4-3060eb2a016e'
   },
@@ -42,6 +43,7 @@ const ACCOUNTS: AccountWithPlatform[] = [
       url: 'https://www.jpmorgan.com'
     },
     platformId: '43e8fcd1-5b79-4100-b678-d2229bd1660d',
+    tbszYear: null,
     updatedAt: new Date('2024-01-01'),
     userId: '081aa387-487d-4438-83a4-3060eb2a016e'
   },
@@ -57,6 +59,7 @@ const ACCOUNTS: AccountWithPlatform[] = [
       url: 'https://interactivebrokers.com'
     },
     platformId: 'f3e9d0e5-1e0f-4a3c-8b12-1f2a3b4c5d6e',
+    tbszYear: null,
     updatedAt: new Date('2024-01-01'),
     userId: '081aa387-487d-4438-83a4-3060eb2a016e'
   },
@@ -67,6 +70,7 @@ const ACCOUNTS: AccountWithPlatform[] = [
     id: '267ec888-cb57-45d0-8085-938017417a2e',
     name: 'Savings Account',
     platformId: null,
+    tbszYear: null,
     updatedAt: new Date('2024-01-01'),
     userId: '081aa387-487d-4438-83a4-3060eb2a016e'
   }

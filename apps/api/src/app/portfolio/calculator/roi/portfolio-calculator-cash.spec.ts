@@ -188,6 +188,7 @@ describe('PortfolioCalculator (ROI)', () => {
             id: accountId,
             name: 'USD',
             platformId: null,
+            tbszYear: null,
             updatedAt: parseDate('2023-12-31'),
             userId: userDummyData.id
           }

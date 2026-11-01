@@ -109,7 +109,8 @@ export class ExportService {
           name,
           platform,
           platformId,
-          tags
+          tags,
+          tbszYear
         }): ExportResponse['accounts'][number] => {
           if (platformId) {
             platformsMap[platformId] = platform;
@@ -126,7 +127,8 @@ export class ExportService {
             platformId,
             tags: tags.map(({ id: tagId }) => {
               return tagId;
-            })
+            }),
+            tbszYear
           };
         }
       );

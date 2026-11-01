@@ -409,6 +409,7 @@ describe('PortfolioService', () => {
             id: randomUUID(),
             name: 'USD',
             platformId: null,
+            tbszYear: null,
             updatedAt: parseDate('2024-01-01'),
             userId: userDummyData.id
           }
@@ -448,6 +449,7 @@ describe('PortfolioService', () => {
         id: randomUUID(),
         name: 'USD',
         platformId: null,
+        tbszYear: null,
         updatedAt: parseDate('2024-01-01'),
         userId: userDummyData.id
       };

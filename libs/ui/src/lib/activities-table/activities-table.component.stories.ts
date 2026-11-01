@@ -46,6 +46,7 @@ const activities: Activity[] = [
       id: '776bd1e9-b2f6-4f7e-933d-18756c2f0625',
       name: 'Trading Account',
       platformId: '9da3a8a7-4795-43e3-a6db-ccb914189737',
+      tbszYear: null,
       updatedAt: new Date('2025-06-01T06:53:10.569Z'),
       userId: '081aa387-487d-4438-83a4-3060eb2a016e',
       platform: {
@@ -110,6 +111,7 @@ const activities: Activity[] = [
       id: '776bd1e9-b2f6-4f7e-933d-18756c2f0625',
       name: 'Trading Account',
       platformId: '9da3a8a7-4795-43e3-a6db-ccb914189737',
+      tbszYear: null,
       updatedAt: new Date('2025-06-01T06:53:10.569Z'),
       userId: '081aa387-487d-4438-83a4-3060eb2a016e',
       platform: {
@@ -174,6 +176,7 @@ const activities: Activity[] = [
       id: '776bd1e9-b2f6-4f7e-933d-18756c2f0625',
       name: 'Trading Account',
       platformId: '9da3a8a7-4795-43e3-a6db-ccb914189737',
+      tbszYear: null,
       updatedAt: new Date('2025-06-01T06:53:10.569Z'),
       userId: '081aa387-487d-4438-83a4-3060eb2a016e',
       platform: {
@@ -238,6 +241,7 @@ const activities: Activity[] = [
       id: '776bd1e9-b2f6-4f7e-933d-18756c2f0625',
       name: 'Trading Account',
       platformId: '9da3a8a7-4795-43e3-a6db-ccb914189737',
+      tbszYear: null,
       updatedAt: new Date('2025-06-01T06:53:10.569Z'),
       userId: '081aa387-487d-4438-83a4-3060eb2a016e',
       platform: {
@@ -302,6 +306,7 @@ const activities: Activity[] = [
       id: '776bd1e9-b2f6-4f7e-933d-18756c2f0625',
       name: 'Trading Account',
       platformId: '9da3a8a7-4795-43e3-a6db-ccb914189737',
+      tbszYear: null,
       updatedAt: new Date('2025-06-01T06:53:10.569Z'),
       userId: '081aa387-487d-4438-83a4-3060eb2a016e',
       platform: {

@@ -18,6 +18,7 @@ const accounts: AccountWithPlatform[] = [
       url: 'https://interactivebrokers.com'
     },
     platformId: '9da3a8a7-4795-43e3-a6db-ccb914189737',
+    tbszYear: null,
     updatedAt: new Date('2025-06-01T06:53:10.569Z'),
     userId: '081aa387-487d-4438-83a4-3060eb2a016e'
   },
@@ -33,6 +34,7 @@ const accounts: AccountWithPlatform[] = [
       url: 'https://www.fidelity.com'
     },
     platformId: '43e8fcd1-5b79-4100-b678-d2229bd1660d',
+    tbszYear: null,
     updatedAt: new Date('2025-06-01T06:48:53.055Z'),
     userId: '081aa387-487d-4438-83a4-3060eb2a016e'
   }

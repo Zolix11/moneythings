@@ -5,7 +5,7 @@ import {
   TAG_ID_DRAFT
 } from '@ghostfolio/common/config';
 import { CreateAccountDto, UpdateAccountDto } from '@ghostfolio/common/dtos';
-import { getStringOrNull } from '@ghostfolio/common/helper';
+import { getStringOrNull, getTbszPeriodEnds } from '@ghostfolio/common/helper';
 import { hasPermission, permissions } from '@ghostfolio/common/permissions';
 import { validateObjectForForm } from '@ghostfolio/common/utils';
 import type { Platform, Tag } from '@ghostfolio/prisma/browser';
@@ -130,7 +130,8 @@ export class GfCreateOrUpdateAccountDialogComponent {
             name: translate(name)
           };
         })
-      ]
+      ],
+      tbszYear: [this.data.account.tbszYear]
     });
 
     this.accountForm
@@ -204,6 +205,8 @@ export class GfCreateOrUpdateAccountDialogComponent {
     }
   }
 
+  protected readonly getTbszPeriodEnds = getTbszPeriodEnds;
+
   protected displayFn(platform: Platform) {
     return platform?.name ?? '';
   }
@@ -228,7 +231,8 @@ export class GfCreateOrUpdateAccountDialogComponent {
         })
         .map(({ id }: Tag) => {
           return id;
-        })
+        }),
+      tbszYear: this.accountForm.get('tbszYear')?.value ?? null
     };
 
     try {

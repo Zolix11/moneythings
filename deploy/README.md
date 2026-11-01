@@ -3,17 +3,29 @@
 Ghostfolio beside fitcoach on the Raspberry Pi 3, reachable only over Tailscale
 at https://raspberrypi.tailfca142.ts.net:8443.
 
-## Memory
+## Memory — on hold
 
-The Pi has ~350 MB free with fitcoach running. Ghostfolio adds one Node
-process (heap capped at 256 MB) and a 32 MB Redis; Postgres is shared with
-fitcoach. Check after the first start:
+Measured on the Mac (arm64, 1 Nov 2026): the app idles at ~355 MB, and with
+`--max-old-space-size=256` it died with "heap out of memory" the moment the
+first Yahoo security started gathering history. The Pi 3 has ~350 MB free
+next to fitcoach, so this setup doesn't fit there. It runs on the Mac for now
+(`deploy/local/`); these files stay for a bigger host. Drop the heap cap there.
+
+## Building the image
+
+The Pi can't build Ghostfolio, so build on the Mac (also arm64) and ship the
+file. Don't pipe `docker save` into `ssh` — the Wi-Fi drops it (fitcoach's
+CLAUDE.md).
 
 ```bash
-docker stats --no-stream; free -m
+docker build --platform linux/arm64 -t moneythings:latest .
+docker save moneythings:latest | gzip > /tmp/moneythings.tar.gz
+rsync -P /tmp/moneythings.tar.gz zolix@192.168.10.236:/tmp/
+ssh zolix@192.168.10.236 'gunzip -c /tmp/moneythings.tar.gz | docker load'
+# both must print the same id
+docker image inspect -f '{{.Id}}' moneythings:latest
+ssh zolix@192.168.10.236 "docker image inspect -f '{{.Id}}' moneythings:latest"
 ```
-
-If it swaps hard, the next lever is moving one of the two apps off the Pi.
 
 ## First install
 
@@ -70,7 +82,18 @@ default allow-all with:
 Verify from their device: `:8443` loads, `https://raspberrypi.tailfca142.ts.net`
 (fitcoach) must not.
 
+## TBSZ and Hungarian securities
+
+- **TBSZ:** one Ghostfolio account per TBSZ. Set its collection year
+  (gyűjtőév) in the account dialog. The accounts list shows when it turns
+  tax-free (end of the 5th year after the collection year).
+- **Állampapír:** search for MÁP+, FixMÁP, BMÁP, PMÁP, EMÁP, Babakötvény
+  or KTJ when adding an activity (or `GF_` to list them all). Enter the nominal value as the quantity at
+  unit price 1, and interest as an Interest activity (MÁP+ capitalisation:
+  a Buy at 1). DKJ and MÁK aren't included: they trade at market prices.
+
 ## Updating
 
-Bump the image tag in `docker-compose.yml`, then `docker compose pull && docker compose up -d`.
+Merge upstream (`git fetch upstream && git merge upstream/main`), rebuild and
+ship the image as above, then on the Pi: `docker compose up -d --force-recreate`.
 Back up first: `docker exec fitcoach-db-1 pg_dump -U fitcoach ghostfolio | gzip > ~/ghostfolio-$(date +%F).sql.gz`.

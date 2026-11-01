@@ -37,6 +37,7 @@ const accounts: AccountWithValue[] = [
       url: 'https://www.coinbase.com'
     },
     platformId: '8dc24b88-bb92-4152-af25-fe6a31643e26',
+    tbszYear: null,
     updatedAt: new Date('2025-06-01T06:52:49.063Z'),
     userId: '081aa387-487d-4438-83a4-3060eb2a016e',
     value: 278,
@@ -60,6 +61,7 @@ const accounts: AccountWithValue[] = [
       url: 'https://www.jpmorgan.com'
     },
     platformId: '43e8fcd1-5b79-4100-b678-d2229bd1660d',
+    tbszYear: null,
     updatedAt: new Date('2025-06-01T06:48:53.055Z'),
     userId: '081aa387-487d-4438-83a4-3060eb2a016e',
     value: 12000,
@@ -83,6 +85,7 @@ const accounts: AccountWithValue[] = [
       url: 'https://interactivebrokers.com'
     },
     platformId: '9da3a8a7-4795-43e3-a6db-ccb914189737',
+    tbszYear: null,
     updatedAt: new Date('2025-06-01T06:53:10.569Z'),
     userId: '081aa387-487d-4438-83a4-3060eb2a016e',
     value: 95693.70321466809,

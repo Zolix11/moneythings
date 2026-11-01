@@ -2,6 +2,7 @@ import { ConfirmationDialogType } from '@ghostfolio/common/enums';
 import {
   getLocale,
   getLowercase,
+  getTbszPeriodEnds,
   isAccountExcluded
 } from '@ghostfolio/common/helper';
 import { internalRoutes } from '@ghostfolio/common/routes/routes';
@@ -56,6 +57,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
   templateUrl: './accounts-table.component.html'
 })
 export class GfAccountsTableComponent {
+  protected readonly getTbszPeriodEnds = getTbszPeriodEnds;
+
   public readonly accounts = input.required<AccountWithValue[] | undefined>();
   public readonly activitiesCount = input<number>();
   public readonly baseCurrency = input<string>();

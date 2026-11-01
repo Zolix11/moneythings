@@ -1,5 +1,6 @@
-# Ghostfolio on the Pi, next to fitcoach. Runs the official image, so the
-# source in this repo never has to reach the Pi.
+# Ghostfolio on the Pi, next to fitcoach. The image is this fork (TBSZ,
+# Hungarian securities), built on the Mac and shipped, since the Pi 3 has
+# nowhere near the RAM to build it. See README.
 #
 # Postgres is fitcoach's: Ghostfolio gets its own role and database inside that
 # instance instead of a second Postgres process the Pi 3 has no RAM for.
@@ -8,7 +9,7 @@ name: ghostfolio
 
 services:
   ghostfolio:
-    image: docker.io/ghostfolio/ghostfolio:3.96.0
+    image: moneythings:latest
     container_name: ghostfolio
     restart: unless-stopped
     init: true
