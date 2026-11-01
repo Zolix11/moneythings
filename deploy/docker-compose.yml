@@ -1,0 +1,64 @@
+# Ghostfolio on the Pi, next to fitcoach. Runs the official image, so the
+# source in this repo never has to reach the Pi.
+#
+# Postgres is fitcoach's: Ghostfolio gets its own role and database inside that
+# instance instead of a second Postgres process the Pi 3 has no RAM for.
+# Ceiling: if fitcoach's Postgres is down, so is this.
+name: ghostfolio
+
+services:
+  ghostfolio:
+    image: docker.io/ghostfolio/ghostfolio:3.96.0
+    container_name: ghostfolio
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 1m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    env_file: .env
+    environment:
+      REDIS_HOST: redis
+      # caps the V8 heap so a spike gets GC'd instead of swapping the Pi;
+      # raise it if portfolio pages start failing with heap out of memory
+      NODE_OPTIONS: --max-old-space-size=256
+    # localhost only: tailscale serve on :8443 is the one way in
+    ports:
+      - 127.0.0.1:3333:3333
+    networks: [default, fitcoach]
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:3333/api/v1/health']
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 2m
+    logging:
+      driver: json-file
+      options: { max-size: '10m', max-file: '3' }
+
+  # cache and job queue only; jobs are rescheduled, so nothing here needs to
+  # survive a restart. No port, no password: only ghostfolio can reach it.
+  redis:
+    image: docker.io/library/redis:8-alpine
+    container_name: gf-redis
+    restart: unless-stopped
+    user: '999:1000'
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    command: redis-server --save "" --appendonly no --maxmemory 32mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+networks:
+  fitcoach:
+    external: true
+    name: fitcoach_default
